@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.xc.baseproject.app">
+
+    <application
+        android:icon="@drawable/ic_android_24dp"
+        tools:replace="android:icon"></application>
+
+</manifest>
