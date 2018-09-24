@@ -1,10 +1,11 @@
 package com.xc.baseproject.net
 
-import android.util.Log
 import com.google.gson.GsonBuilder
+import com.xc.baseproject.BuildConfig
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient
 import okhttp3.Response
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -21,6 +22,7 @@ object NetService {
 
     init {
         val okHttpBuilder = OkHttpClient.Builder()
+        okHttpBuilder.addInterceptor(HttpLoggingInterceptor().setLevel(if (BuildConfig.DEBUG) HttpLoggingInterceptor.Level.BODY else HttpLoggingInterceptor.Level.NONE))
         baseOkHttpClient = okHttpBuilder.build()
 
         val retrofitBuilder = Retrofit.Builder()
@@ -30,20 +32,9 @@ object NetService {
         retrofitBuilder.addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         baseRetrofit = retrofitBuilder.build()
 
-        wayJdRetrofit = baseRetrofit.newBuilder().client(baseOkHttpClient.newBuilder().addInterceptor(object : Interceptor {
-            override fun intercept(chain: Interceptor.Chain?): Response {
-                if (chain == null) {
-                    Log.e("Net Error", "okHttp intercept receive null chain")
-                    return Response.Builder() //
-                            .code(400)
-                            .message("okHttp intercept receive null chain")
-                            .build()
-                }
-                val request = chain.request().newBuilder().build()
-                return chain.proceed(request)
-            }
-        }).build())
-                .baseUrl(baseWayJdApiUrl).build()
+        wayJdRetrofit = baseRetrofit.newBuilder()
+                .baseUrl(baseWayJdApiUrl)
+                .build()
     }
 
 }

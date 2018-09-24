@@ -13,6 +13,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.xc.baseproject.BaseActivity
 import kotlinx.android.synthetic.main.recycler_view_item_one_line.view.*
+import timber.log.Timber
 
 class TulingActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,6 +33,7 @@ class TulingActivity : BaseActivity() {
             val message = editText.text.trim().toString()
             tulingViewModel.sendMessage(message)
             editText.setText("")
+            Timber.d(message)
         }
     }
 }

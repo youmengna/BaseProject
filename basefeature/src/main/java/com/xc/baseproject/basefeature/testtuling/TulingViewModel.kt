@@ -2,10 +2,10 @@ package com.xc.baseproject.basefeature.testtuling
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import android.util.Log
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.schedulers.Schedulers
+import timber.log.Timber
 
 class TulingViewModel : ViewModel() {
     private val mDisposable = CompositeDisposable()
@@ -31,7 +31,7 @@ class TulingViewModel : ViewModel() {
                             chatData?.add(Pair(false, result?.result?.text ?: "something wrong"))
                             mChatData.value = chatData
                         },
-                        { e -> Log.e("TulingViewModel", "sendMessage", e) }
+                        { ex -> Timber.e(ex) }
                 )
         mDisposable.add(disposable)
     }
