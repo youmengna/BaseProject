@@ -26,7 +26,7 @@ class TulingActivity : BaseActivity() {
         tulingViewModel.mChatData.observe(
                 getContext(),
                 Observer<ArrayList<Pair<Boolean, String>>> {
-                    recyclerView.adapter.notifyDataSetChanged()
+                    (recyclerView.adapter as TulingAdapter).notifyDataSetChanged()
                 }
         )
         sendButton.setOnClickListener {
