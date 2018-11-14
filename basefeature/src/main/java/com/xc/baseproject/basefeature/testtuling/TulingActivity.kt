@@ -38,7 +38,7 @@ class TulingActivity : BaseActivity() {
     }
 }
 
-class TulingAdapter(var mContext: Context, var mData: List<Pair<Boolean, String>>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class TulingAdapter(var mContext: Context, var mData: ArrayList<Pair<Boolean, String>>?) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         val view = LayoutInflater.from(mContext).inflate(R.layout.recycler_view_item_one_line, parent, false)
         return object : RecyclerView.ViewHolder(view) {}

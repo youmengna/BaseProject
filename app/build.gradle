@@ -1,4 +1,6 @@
 apply plugin: 'com.android.application'
+apply plugin: 'com.google.gms.google-services'//必须在app级别apply,在base里apply无效
+apply plugin: 'io.fabric'
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -22,4 +24,5 @@ android {
 dependencies {
     implementation project(':basefeature')
     implementation project(':base')
+
 }
