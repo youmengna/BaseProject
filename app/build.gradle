@@ -8,12 +8,12 @@ crashlytics {
 }
 
 android {
-    compileSdkVersion rootProject.ext.compileSdkVersion
+    compileSdkVersion rootProject.ext.compileSdkVersion as int
     defaultConfig {
         applicationId "com.xc.baseproject"
-        minSdkVersion rootProject.ext.minSdkVersion
-        targetSdkVersion rootProject.ext.targetSdkVersion
-        versionCode rootProject.ext.versionCode
+        minSdkVersion rootProject.ext.minSdkVersion as int
+        targetSdkVersion rootProject.ext.targetSdkVersion as int
+        versionCode rootProject.ext.versionCode as int
         versionName rootProject.ext.versionName
     }
 
