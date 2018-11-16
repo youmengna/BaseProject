@@ -7,6 +7,7 @@ crashlytics {
     enableNdk true
 }
 
+apply from: rootProject.file('commen.gradle')
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion as int
     defaultConfig {
@@ -16,11 +17,19 @@ android {
         versionCode rootProject.ext.versionCode as int
         versionName rootProject.ext.versionName
     }
-
+    signingConfigs {
+        release {
+            keyAlias rootProject.ext.keyAlias
+            keyPassword rootProject.ext.keyPassword
+            storeFile rootProject.file(rootProject.ext.storeFile)
+            storePassword rootProject.ext.storePassword
+        }
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
 
@@ -29,5 +38,4 @@ android {
 dependencies {
     implementation project(':basefeature')
     implementation project(':base')
-
 }

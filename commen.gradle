@@ -1,0 +1,13 @@
+loadExtraProperties(rootProject.file('local.properties'))
+
+def loadExtraProperties(File extraPropsFile) {
+    def props = new Properties()
+    if (extraPropsFile.exists()) {
+        extraPropsFile.withInputStream {
+            stream -> props.load(stream)
+        }
+    }
+    props.each { key, val ->
+        rootProject.ext.set(key, val)
+    }
+}
