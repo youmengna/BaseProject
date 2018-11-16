@@ -24,7 +24,7 @@
 #---------------------------------基本指令区----------------------------------
 -optimizationpasses 5
 -dontskipnonpubliclibraryclassmembers
--printmapping proguardMapping.txt
+#-printmapping proguardMapping.txt #移除改行，让firebase Crashlytics可自动上传映射文件  https://firebase.google.com/docs/crashlytics/get-deobfuscated-reports?authuser=0
 -optimizations !code/simplification/cast,!field/*,!class/merging/*
 -keepattributes *Annotation*,InnerClasses
 -keepattributes Signature
@@ -199,7 +199,7 @@
   public *;
 }
 # for DexGuard only
--keepresourcexmlelements manifest/application/meta-data@value=GlideModule
+#-keepresourcexmlelements manifest/application/meta-data@value=GlideModule
 
 
 #Rxjava RxAndroid
@@ -231,3 +231,9 @@
 -keep class com.google.zxing.** {*;}
 -dontwarn com.google.zxing.**
 
+#firebase Crashlytics
+-keepattributes *Annotation*
+-keepattributes SourceFile,LineNumberTable
+-keep public class * extends java.lang.Exception
+-keep class com.crashlytics.** { *; }
+-dontwarn com.crashlytics.**
