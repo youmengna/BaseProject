@@ -103,7 +103,7 @@
 
 # support design
 #@link http://stackoverflow.com/a/31028536
--dontwarn android.support.design.**
+#-dontwarn android.support.design.**
 -keep class android.support.design.** { *; }
 -keep interface android.support.design.** { *; }
 -keep public class android.support.design.R$* { *; }
@@ -143,6 +143,9 @@
 -dontwarn org.codehaus.mojo.animal_sniffer.*
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
+
+-dontwarn okhttp3.**
+-dontwarn org.conscrypt.**
 
 
 #retrofit
